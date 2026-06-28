@@ -1,0 +1,20 @@
+# NEVER commit auth or state
+oauth-token
+*.token
+ledger.json
+pending.txt
+*.log
+
+# NEVER commit your actual memory content — this repo is the engine, not your data
+/Brain/
+brain-content/
+self/
+projects/
+people/
+overview.md
+!templates/overview.example.md
+
+# OS / deps
+.DS_Store
+node_modules/
+__pycache__/
