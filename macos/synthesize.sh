@@ -31,7 +31,7 @@ fi
 echo "$PENDING" > "$PENDING_FILE"
 echo "[$(ts)] $(echo "$PENDING" | wc -l | tr -d ' ') pending session(s)" >> "$LOG"
 
-PROMPT="You are the autonomous Brain synthesis agent. Read the operating manual at \"$BRAIN/_CLAUDE.md\" and follow its synthesis loop exactly. The list of unprocessed Claude Code transcript paths to distill this run is in $PENDING_FILE (read it). Distill ruthlessly into self/ projects/ lessons/ people/ tools/, maintain overview.md per its rules, and append a one-line entry to \"$BRAIN/log.md\". Run silently and make the edits directly."
+PROMPT="You are the autonomous Brain synthesis agent. Read the operating manual at \"$BRAIN/_CLAUDE.md\" and follow its synthesis loop exactly. The list of unprocessed Claude Code transcript paths to distill this run is in $PENDING_FILE (read it). Distill ruthlessly into self/ projects/ lessons/ principles/ people/ tools/ — including judgments the owner voiced or enforced, run through self/thinking-lens.md into first-person principles/ pages — maintain overview.md per its rules, and append a one-line entry to \"$BRAIN/log.md\". Run silently and make the edits directly."
 
 cd "$BRAIN"
 ATTEMPTS=4; DELAY=30; ok=0

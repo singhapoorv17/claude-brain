@@ -12,7 +12,8 @@ Inspired by Perplexity's "Brain" (a context graph that learns overnight), rebuil
 
 1. **Auto-loads context into every session.** A `SessionStart` hook injects a compact, recency-weighted memory brief (~2k tokens) at the top of every Claude Code session — who you are, what's active, and how you work. No copy-pasting context ever again.
 2. **Learns overnight.** A scheduled job scans your Claude Code session transcripts each night, distills the new work into structured memory pages (projects, lessons, people), and updates the brief. The memory compounds.
-3. **Stays small and sharp.** It captures liberally but synthesizes ruthlessly — the always-loaded layer stays tiny; depth lives in linked pages pulled on demand.
+3. **Extracts judgment, not just knowledge.** Every input is run through a *thinking lens* — a page codifying how you think and who you are — so the brain stores not only *what a source said* but *what you should learn and apply* (first-person operating principles). That's the difference between a filing cabinet and a brain.
+4. **Stays small and sharp.** It captures liberally but synthesizes ruthlessly — the always-loaded layer stays tiny; depth lives in linked pages pulled on demand.
 
 ## Architecture
 
@@ -29,9 +30,16 @@ Inspired by Perplexity's "Brain" (a context graph that learns overnight), rebuil
    background                          what's been processed, so nothing repeats)
 ```
 
-Two layers, like human memory:
-- **Wide context** (always loaded): `overview.md` — a structured brief, recency-weighted.
+Three layers, like human memory:
+- **Wide context** (always loaded): `overview.md` — a structured brief, recency-weighted, including your top active principles.
 - **Task context** (on demand): `projects/`, `lessons/`, `people/` pages, pulled when a task needs them.
+- **Judgment memory**: `principles/` — how you decide and act, extracted from everything you read and do via `self/thinking-lens.md`.
+
+### The judgment layer
+
+Most memory systems store what happened. A person doesn't just store — they *learn*: read an article about AI bots leaving telltale patterns in LinkedIn comments, and (if they publish AI-assisted writing themselves) walk away with a rule — "no telltales survive in anything I ship, because they disrespect the reader." The article never said that; their judgment did.
+
+Claude Brain codifies this: `self/thinking-lens.md` describes your thinking modes (grounded in real examples from your history) and your active identity vectors (founder, operator, writer, …). Every input — nightly session synthesis, and article ingests if you keep a companion read-vault — is run through the lens, and durable prescriptions land in `principles/` as first-person rules with Trigger / Rule / Why / Provenance / Status. The top active principles ride along in `overview.md`, so every future session already thinks with your judgment, not just your history. See [`templates/thinking-lens.example.md`](templates/thinking-lens.example.md) and [`templates/principles/`](templates/principles/).
 
 ## How it works
 
@@ -80,10 +88,13 @@ Every page is written **for a future AI to read** — a "for future Claude" prea
 | `templates/_CLAUDE.md` | The operating manual the synthesis agent follows |
 | `templates/overview.example.md` | Example of the always-loaded brief |
 | `templates/lessons/` | Example "lesson" (performance memory) page |
+| `templates/thinking-lens.example.md` | The judgment filter — how the owner thinks + identity vectors |
+| `templates/principles/` | Example "principle" (judgment memory) page |
 
 ## Design notes
 
 - **Performance memory is the point.** The highest-value pages aren't "who I am" — they're *lessons*: what strategy worked, what needed correction. That's what makes the next session better, not just better-informed.
+- **Judgment beats knowledge.** A lesson tells Claude how to execute; a *principle* tells it how you decide. Knowledge without the extracted judgment is filing, not learning — capture both, and let the prescription (not the summary) be the payload.
 - **The ledger never false-commits.** If a nightly run fails (API overload, expired token), it does *not* mark sessions as processed — so nothing is silently lost; it retries next run.
 - **Don't sync secrets or personal memory.** Keep your real memory pages and `oauth-token` local (see `.gitignore`). This repo is the *engine*, not anyone's data.
 

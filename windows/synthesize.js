@@ -39,7 +39,7 @@ const batch = pending.slice(0, MAX_PER_RUN);
 fs.writeFileSync(PENDING_FILE, batch.join("\n") + "\n");
 logln(`${pending.length} pending; processing ${batch.length} this run`);
 
-const PROMPT = `You are the autonomous Brain synthesis agent. Read the operating manual at "${path.join(BRAIN, "_CLAUDE.md")}" and follow its synthesis loop exactly. The list of unprocessed Claude Code transcript paths to distill this run is in ${PENDING_FILE} (read it). Distill ruthlessly into self/ projects/ lessons/ people/ tools/, maintain overview.md per its rules, and append a one-line entry to "${path.join(BRAIN, "log.md")}". Run silently and make the edits directly.`;
+const PROMPT = `You are the autonomous Brain synthesis agent. Read the operating manual at "${path.join(BRAIN, "_CLAUDE.md")}" and follow its synthesis loop exactly. The list of unprocessed Claude Code transcript paths to distill this run is in ${PENDING_FILE} (read it). Distill ruthlessly into self/ projects/ lessons/ principles/ people/ tools/ — including judgments the owner voiced or enforced, run through self/thinking-lens.md into first-person principles/ pages — maintain overview.md per its rules, and append a one-line entry to "${path.join(BRAIN, "log.md")}". Run silently and make the edits directly.`;
 
 let ok = false, delay = 30000;
 const logFd = fs.openSync(LOG, "a");
