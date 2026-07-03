@@ -35,7 +35,7 @@ For every input, after capturing what it says:
 1. Which identity vector(s) does this touch?
 2. Through the thinking modes: what is the mechanism underneath the story? What would the owner *do differently* going forward?
 3. Phrase the learning as a first-person prescription with a trigger: "When I <situation>, I <rule>, because <why>."
-4. Durable (matters in 6+ months, applies beyond this one source)? → create/update `principles/<slug>.md` with the source as provenance. One-off → note the judgment inline on the source/session page only.
+4. Durable (matters in 6+ months, applies beyond this one source)? → create/update `principles/<slug>.md` with the source as provenance. One-off → note the judgment inline on the source/session page only. **Durability is the ONLY promotion gate — do not invent stricter ones (e.g. "wait until it recurs"). If it passes, promote now; a later source strengthens provenance, it is not a precondition.**
 5. Conflicts with an existing principle? Flag the tension; never silently overwrite.
 
 **Failure mode to avoid:** storing the knowledge ("bots leave telltales") while dropping the judgment ("therefore I never let telltales through"). The judgment IS the payload; the knowledge is context.
